@@ -1,0 +1,211 @@
+#CN Lab
+------1.Peer to Peer(PC,PC) (send message)
+{Theory:
+Peer to peer is the relationship where the devices share the link equally. The
+examples are ring and mesh topologies.
+• In peer to peer architecture every node is connected to other node directly.
+• Every computer node is referred as peer.
+• Every peer provides services to other peers as well as uses services of them.
+• There is no central server present
+}
+
+-----2.Star using hub (Hub,PC,PC,PC) (send message)
+ {Theory:
+Star topology is a network topology in which each network component is 
+physically connected to a central node such as a router, hub or switch. ... 
+When the central node receives a packet from a connecting node, it can 
+pass the packet on to other nodes in the network. A star topology is also 
+known as a star network.
+• A network hub is a node that broadcasts data to every computer or Ethernetbased device connected to it.
+• A device at the center of a star topology network. Hubs can be active (where 
+they repeat signals set to them) or passive (where they do not repeat but 
+merely split signals sent through them).
+  }
+
+------3.Star using switch (Switch,PC,PC,PC) (send message)
+{Theory:
+	In a star topology all nodes indirectly connect to each other through one or 
+more switches . The switch acts as a central point through which all 
+communications are passed. Large networks using a star topology are 
+usually controlled by one or more servers . Hence, the client-server model 
+usually uses a star topology.
+• Does unicasting, multicasting and broadcasting
+}
+
+-------4.Bus using switch (Switch-4, PC-4) (command promt: ping 1.1.1.1)
+{
+   Theory:
+A bus network is a network topology in which nodes are directly connected to a 
+common half-duplex link called a bus. A host on a bus network is called a station. In 
+a bus network, every station will receive all network traffic, and the traffic generated 
+by each station has equal transmission priority.
+• All nodes are connected to a Single Cable.
+• If backbone cable is broken, Entire N/W fails.
+• Easy to Install. Less Cabling is Required.
+}
+
+--------5.Mesh using switch(Switch-5, PC-5)(command promt: ping 1.1.1.1)
+{Theory:
+• Computers are Interconnected.
+• Dedicated Link between each Node.
+• More Cabling is Required.
+• Highly Reliable Network.
+}
+
+--------6.Ring using switch(Switch-4, PC-4(command promt: ping 1.1.1.1)
+
+-------7.Hybrid using switch(Switch-7,PC-7) (Switches are binary tree structure)
+{Theory:
+Bus + Star Topologies (Also called as Tree).
+• Top node is called as Root and other are Descendants.
+• One path exists between any two nodes.
+• Easily Scalable
+}
+
+---------8.Switch using Telenet(Switch-1,PC-1(1.1.1.1))
+
+Switch commads in CLI:
+enable
+configure terminal
+enable password rgukt
+interface vlan1
+IP address 10.10.10.1 255.0.0
+no shutdown
+exit
+line vty 0 2 
+password rgukt
+login
+exit
+exit
+write memory
+
+Commands at PC to access switch(cmd promt):
+telnet 10.10.10.1
+Yser Access Verification
+password:rgukt
+Switch> enable 
+password:rgukt
+Switch# config
+Switch# exit
+
+{
+Theory:
+• Telnet enables a user to manage a device remotely.
+• Telnet is a protocol used to connect to switches and other devices in your network.
+• Telnet provides a connection from a computer to a remote switch.
+• The connection allows access to make changes to the device without actually having to be 
+on site.
+}
+
+-------9.Router using Telnet (Router-1(4331),Pc-1 (1.1.1.1))
+
+Commads at router (CLI)
+enable
+config terminal
+enable password rgukt
+interface Gig0/0/0
+IP adress 10.10.10.1 255.0.0.0
+no shutdown
+line vty 0 9
+password rgukt
+login 
+exit
+exit
+write memory
+
+Commads At PC cmd promt
+telnet 10.10.10.1
+password:
+enable
+password:
+config
+
+{Theory:
+• Telnet enables a user to manage a device remotely.
+• A router is a networking device that forwards data packets between computer 
+networks. Routers perform the traffic directing functions on the Internet.}
+
+
+
+-------10.ARP Using Cisco Packet(Switch,Server,PC-2)
+   set IP of 2PCs
+   click Search Icon put on PC and select ARP(do same to second pc)
+   click on pc and commond prompt
+   ->arp -a
+   ->ping ___(other pc ip)
+   -->arp -a 
+
+-------11.Connection of 2 different networks using Router(Router-1(4331), switcH(2960)-2, pc-8) (give ip to gig/0/0/0(<127) and gig0/0/1(>127) to router
+and give the same gateway of all pc should same and also Ip addrerss but last one should change (10.11.12.1)  (192.168.1.1) )
+CLI commands (router):
+enable 
+config terminal
+interface Gig0/0/0
+IP address 10.11.12.10 255.255.0.0
+no shutdown
+exit
+write memory
+
+PC cmd promt:
+ping 160.160.1.2
+
+{Theory:
+• Network Layer Device that forward the packets between networks.
+• Used to connect two Different Networks.
+• Works on IP addresses.
+• Maintains Routing Table.}
+
+
+------12.Cofig of DHCP service on Router
+(Switch-1,Router-1,PC-4) (Set DHCP to all pcs)
+
+commands of CLI(router):
+enable 
+config terminal
+interface gig0/0/0
+IP address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+
+ip DHCP pool MyNetwork
+network 192.168.1.2 255.255.255.0
+default-server 192.168.11.1
+dns-server 10.10.10.1
+exit
+exit
+write memorey
+(check IPs of pcs)
+
+
+
+
+
+------13.DHCP server using Cisco Packet
+(PC-2,Switch,server)
+*set DHCP to all PCs
+*Set ip address and dns address same for server. And also set a gateway
+*Goto Server->Services->DHCP and put IP address starting from ex:-10.10.11.1
+*Check the adderesses of pcs
+
+-----14.DNS server configuration using cisco packet tracer
+    (PC-2,Switch,Server)
+*Set ip address and dns address same for server. And also set a gateway
+*Set IP for pcs
+*Goto Server->services->HTTP->edit
+*Goto Server->Services->DNS->enterName->Server IP Address
+*PC->Desktop->Web browser->URL(Server IP address)
+
+
+
+
+------15.Email using packet tracer software
+(Server,Router,Switch,PC-2)
+*Set Class-c Ip address and default gatewahys for Sever and PCs 
+*Router Congig  Gig0/0/0 and Gig0/0/1 default gateways of server and pcs respectively (Note: Ensure it is oN)
+*Goto Server->Services->Email
+*Add user name password according to number of pcs
+*cofig email in each pc
+*Send mail(compose) to one pc to other pc
+*Check in other pc that the mail is recived or not.
+
+
